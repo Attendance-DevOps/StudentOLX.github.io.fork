@@ -23,6 +23,8 @@ import 'package:olx_server/constants/colors.dart';
 import 'package:olx_server/constants/themeData/themeData.dart';
 import 'package:provider/provider.dart';
 
+import 'Files_Page.dart';
+
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
 
@@ -369,8 +371,11 @@ class _AddProductState extends State<AddProduct> {
                   child: Center(
                     child: ElevatedButton(
                       onPressed: () async {
-                        final result = await FilePicker.platform.pickFiles();
+                        final result = await FilePicker.platform.pickFiles(
+                            allowMultiple:
+                                true); //allows to pick multiple files
                         if (result == null) return;
+                        openFiles(result.files);
 
                         final file = result.files.first;
                         // openFile(file);
@@ -389,7 +394,11 @@ class _AddProductState extends State<AddProduct> {
   void openFile(PlatformFile file) {
     OpenFile.open(file.path!);
   }
+  
+  void openFiles(List<PlatformFile> files) => Navigator.of(context).push(MaterialPageRoute(builder: (context) => FilesPage(files:files,onOpenedFile:openFile,)));
 }
+
+
 
 class RPSCustomPainter extends CustomPainter {
   @override
