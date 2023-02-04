@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:olx_server/constants/colors.dart';
 import 'package:olx_server/constants/themeData/themeData.dart';
-import 'package:olx_server/constants/variables.dart';
+import 'package:olx_server/models/product_card.dart';
+import 'package:olx_server/screens/Recommendations/R_screens/components/categories/categoriesPage.dart';
 import 'package:olx_server/screens/Recommendations/R_screens/components/sampleWidget.dart';
 import 'package:provider/provider.dart';
 
@@ -28,71 +29,69 @@ class _RecommendationHomeScreenState extends State<RecommendationHomeScreen>
   Widget build(BuildContext context) {
     final theme = Provider.of<ThemeProvider>(context);
     final size = MediaQuery.of(context).size;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      // Provide the [TabController]
-      home: DefaultTabController(
+
+    return Scaffold(
+      body: DefaultTabController(
         length: 3,
         child: Scaffold(
           body: SafeArea(
             child: Stack(
               children: [
                 Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 130),
                     child: Container(
                       color: theme.isDarkMode == false
                           ? Colors.white
                           : Colors.black,
                       child: TabBar(
-                        // indicator: BoxDecoration(
-                        //   borderRadius: BorderRadius.circular(50),
-                        //   color: Colors.greenAccent,
-                        // ),
-                        indicator: const UnderlineTabIndicator(
+                        indicator: UnderlineTabIndicator(
                             borderSide: BorderSide(
-                                color: Color.fromARGB(255, 170, 166, 166),
-                                width: 8)),
+                                color: LightThemeColors.TabIndicatorColor,
+                                width: 3)),
                         automaticIndicatorColorAdjustment: true,
                         indicatorSize: TabBarIndicatorSize.tab,
                         splashBorderRadius: BorderRadius.circular(50),
                         labelColor: theme.isDarkMode == false
-                            ? Colors.black
-                            : Colors.white,
-                        // labelColor: Theme.of(context).l,
+                            ? LightThemeColors.TabIndicatorColor
+                            : LightThemeColors.TabIndicatorColor,
                         controller: _tabController,
                         unselectedLabelColor: theme.isDarkMode == false
                             ? const Color.fromARGB(255, 85, 83, 83)
                             : Colors.grey,
-                        tabs: const [
-                          Tab(
-                            child: Text(
-                              "Categories",
-                              // style: TextStyle(height: 20),
+                        tabs: [
+                          GestureDetector(
+                            child: const Tab(
+                              text: "Categories",
                             ),
                           ),
-                          Tab(
-                            child: Text("Recent"),
+                          GestureDetector(
+                            child: const Tab(
+                              text: "Recent",
+                            ),
                           ),
-                          Tab(
-                            child: Text("Trending"),
-                          ),
+                          GestureDetector(
+                            child: const Tab(
+                              text: "Trending",
+                            ),
+                          )
                         ],
                       ),
                     )),
                 // Sample pages
                 Padding(
-                  padding: const EdgeInsets.only(top: 70),
+                  padding: const EdgeInsets.only(top: 50),
                   child: TabBarView(
                     physics: const BouncingScrollPhysics(),
+                    controller: _tabController,
                     children: [
-                      SampleWidget(
-                        label: 'FIRST PAGE',
-                        color: Colors.red.shade200,
-                      ),
-                      SampleWidget(
-                        label: 'SECOND PAGE',
-                        color: Colors.blue.shade100,
-                      ),
+                      const CategoriesPage(),
+                      const FoodItemCard(
+                          imageUrl:
+                              "https://images.unsplash.com/photo-1670272590027-72888b060829?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60",
+                          itemName: "itemName",
+                          estimatedTime: "3",
+                          rating: "4",
+                          price: "1000"),
                       SampleWidget(
                         label: 'THIRD PAGE',
                         color: Colors.orange.shade200,
@@ -108,33 +107,3 @@ class _RecommendationHomeScreenState extends State<RecommendationHomeScreen>
     );
   }
 }
-
-// SegmentedTabControl(
-//                     // Customization of widget
-//                     radius: const Radius.circular(3),
-//                     backgroundColor: Theme.of(context).unselectedWidgetColor,
-//                     indicatorColor: Theme.of(context).indicatorColor,
-//                     tabTextColor: Colors.black45,
-//                     selectedTabTextColor: Colors.white,
-//                     squeezeIntensity: 2,
-
-//                     height: 45,
-//                     tabPadding: const EdgeInsets.symmetric(horizontal: 8),
-//                     textStyle: Theme.of(context).textTheme.bodyText1,
-//                     // Options for selection
-//                     // All specified values will override the [SegmentedTabControl] setting
-//                     tabs: [
-//                       SegmentTab(
-//                         label: 'ACCOUNT',
-//                         // For example, this overrides [indicatorColor] from [SegmentedTabControl]
-//                         color: Colors.red.shade200,
-//                       ),
-//                       SegmentTab(
-//                         label: 'HOME',
-//                         backgroundColor: Colors.blue.shade100,
-//                         selectedTextColor: Colors.black45,
-//                         textColor: Colors.black26,
-//                       ),
-//                       const SegmentTab(label: 'NEW'),
-//                     ],
-//                   ),
