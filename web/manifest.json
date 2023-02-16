@@ -1,6 +1,6 @@
 {
-    "name": "olx_server",
-    "short_name": "olx_server",
+    "name": "olx_student_app",
+    "short_name": "olx_student_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.olx_server">
+    package="com.example.olx_student_app">
    <application
-        android:label="olx_server"
+        android:label="olx_student_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

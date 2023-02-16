@@ -1,114 +1,65 @@
-/* 
-Contains: 
-  - Sticky Bottom Navigation Bar
-  - Greet Wish element
-  - 
-*/
-
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:olx_server/constants/themeData/themeData.dart';
-import 'package:olx_server/screens/AddProduct/addproduct.dart';
-import 'package:olx_server/screens/HomePage/SearchBar/searchBar.dart';
-import 'package:olx_server/screens/HomePage/SettingsOptions/settingsButton.dart';
-import 'package:olx_server/screens/ProfilePage/profilePage.dart';
-import 'package:olx_server/screens/Recommendations/R_screens/recommendation_home_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Categories/categories.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Profile/profile.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Recent/recent.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Sell/sell.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Trending/trending.dart';
+import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavBar.dart';
+import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavBaritem.dart';
+import 'homepageItems/homePageItems.dart';
+// import 'bottomNa';
+// import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+// import 'package:theme_provider/theme_provider.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  int _selectedIndex = 0;
-  String greeting() {
-    var hour = DateTime.now().hour;
-    if (hour < 12) {
-      return "Good Morning";
-    }
-    if (hour < 17) {
-      return "Good Afternoon";
-    }
-    return "Good Evening";
+class _HomePageState extends State<HomePage> {
+  var _selectedTab = 0;
+  void _handleIndexChanged(int i) {
+    setState(() {
+      _selectedTab = i;
+    });
   }
 
-  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
-  // --------------------------------------------ALL SCREENS
-  final Pages = [
-    const RecommendationHomeScreen(),
-    const AddProduct(),
-    const ProfilePage()
+  var pages = [
+    const Trending(),
+    const Categories(),
+    const Sell(),
+    const Recent(),
+    const Profile()
   ];
   @override
   Widget build(BuildContext context) {
-    final theme = Provider.of<ThemeProvider>(context);
+    // var controller = ThemeProvider.controllerOf(context);
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        // -----------------------------------------APP BAR
-        appBar: AppBar(
-          toolbarHeight: 70,
-          backgroundColor: theme.isDarkMode == false
-              ? const Color.fromARGB(255, 255, 255, 255)
-              : const Color.fromARGB(255, 0, 0, 0),
-          title: Text(
-            greeting(),
-            style: TextStyle(
-                color: theme.isDarkMode == false
-                    ? const Color.fromARGB(255, 0, 0, 0)
-                    : const Color.fromARGB(255, 255, 255, 255)),
-          ),
-          actions: const [
-            SearchBarButton(),
-            SettingsButton(),
+        extendBody: true,
+        body: pages[_selectedTab],
+        appBar: HomePageItems.HomePageAppBar(),
+        bottomNavigationBar: DotNavigationBar(
+          bottomNavigationBarThemedata:
+              Theme.of(context).bottomNavigationBarTheme,
+          // selectedItemColor: Colors.white,
+          margin: const EdgeInsets.all(0),
+          currentIndex: _selectedTab,
+          // dotIndicatorColor: const Color.fromARGB(255, 255, 255, 255),
+          marginR: const EdgeInsets.only(left: 10, right: 10),
+          // unselectedItemColor:
+          //     const Color.fromARGB(255, 187, 177, 180).withOpacity(0.5),
+          onTap: _handleIndexChanged,
+          items: [
+            DotNavigationBarItem(icon: const Icon(Icons.arrow_outward_rounded)),
+            DotNavigationBarItem(
+                icon: const Icon(Icons.auto_awesome_mosaic_rounded)),
+            DotNavigationBarItem(icon: const Icon(Icons.add)),
+            DotNavigationBarItem(
+                icon: const Icon(Icons.access_time_filled_sharp)),
+            DotNavigationBarItem(icon: const Icon(Icons.account_circle_sharp)),
           ],
-        ),
-        // ---------------------------------------BODY
-        body: Pages[_selectedIndex],
-        // ---------------------------------------BOTTOM NAVIGATION BAR
-        bottomNavigationBar: CurvedNavigationBar(
-          key: _bottomNavigationKey,
-          height: 47,
-          // ----------- Bottom navigation buttons
-          items: <Widget>[
-            Icon(
-              Icons.home,
-              size: 30,
-              color: theme.isDarkMode == false
-                  ? const Color.fromARGB(255, 0, 0, 0)
-                  : const Color.fromARGB(255, 255, 255, 255),
-            ),
-            Icon(
-              Icons.add,
-              size: 30,
-              color: theme.isDarkMode == false
-                  ? const Color.fromARGB(255, 0, 0, 0)
-                  : const Color.fromARGB(255, 255, 255, 255),
-            ),
-            Icon(
-              Icons.man,
-              size: 30,
-              color: theme.isDarkMode == false
-                  ? const Color.fromARGB(255, 0, 0, 0)
-                  : const Color.fromARGB(255, 255, 255, 255),
-            ),
-            // Icon(Icons.shop, size: 30),
-          ],
-          backgroundColor: theme.isDarkMode == false
-              ? Color.fromARGB(255, 19, 202, 244)
-              : Color.fromARGB(255, 55, 56, 56),
-          color: theme.isDarkMode == false
-              ? const Color.fromARGB(255, 255, 255, 255)
-              : const Color.fromARGB(255, 0, 0, 0),
-          buttonBackgroundColor: theme.isDarkMode == false
-              ? const Color.fromARGB(255, 255, 255, 255)
-              : const Color.fromARGB(255, 0, 0, 0),
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
         ));
   }
 }
