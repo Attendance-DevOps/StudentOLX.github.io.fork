@@ -1,1 +1,0 @@
-Tab on Home Screen: https://github.com/usman18/Flutter-UI-Kit/blob/master/%2310_whatsapp_ui_redesign/lib/ui/pages/home_screen.dart

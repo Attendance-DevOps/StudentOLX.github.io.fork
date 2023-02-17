@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/screens/splashScreen/splashScreen.dart';
 import 'package:olx_student_app/themes/allThemes.dart';
-// import 'package:hive_flutter/hive_flutter.dart';
 
-// late Box box;
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  /// Hive initialization
-  // await Hive.initFlutter();
-  /// Will use LazyBox in future to avoid loading screens and themes in one go causing to inefficency of app
-  // box = await Hive.openBox("box");
-  // Hive.registerAdapter()
+  // await initialize();
   runApp(MyApp());
 }
 

@@ -41,7 +41,7 @@ class _ThemeDialogBoxState extends State<ThemeDialogBox> {
                   return;
                 } else {
                   /// Providing the selectedTheme Value to MyApp Theme Section in main.dart
-                  // MyApp.currentTheme.value = value;
+                  MyApp.currentTheme.value = value;
                   
                 }
               }));
