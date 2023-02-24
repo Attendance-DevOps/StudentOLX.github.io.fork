@@ -1,0 +1,17 @@
+Container(
+    decoration: pageDecoration,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        categoryWidget(value, Icons.border_color_sharp, 'Stationary', size),
+        categoryWidget(
+            value, Icons.ad_units, 'Electronics & Accessories', size),
+        categoryWidget(value, Icons.accessibility, 'Clothings', size),
+        categoryWidget(value, Icons.book, 'Books', size),
+        categoryWidget(value, Icons.sports, 'Sports Items', size),
+      ],
+    ),
+  )
