@@ -3,12 +3,12 @@ import 'package:olx_student_app/themes/Colors.dart';
 
 class AllSplashScreens {
   static Scaffold darkThemeSplashScreen = Scaffold(
-    backgroundColor: Color.fromARGB(255, 19, 19, 18),
+    backgroundColor: DarkThemeColors.scaffoldBackGroundColor,
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
-        Center(
-            child: Text(
+        Center(child: 
+        Text(
           "Student OLX",
           style: TextStyle(color: Colors.white),
         ))
@@ -16,16 +16,14 @@ class AllSplashScreens {
     ),
   );
   static Scaffold lightThemeSplashScreen = Scaffold(
-    backgroundColor: Color.fromARGB(255, 245, 246, 247),
+    backgroundColor: LightThemeColors.scaffoldBackGroundColor,
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Center(
-            child: Text(
+      children: const [Center(child: 
+        Text(
           "Student OLX",
           style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-        ))
-      ],
+        ))],
     ),
   );
 }

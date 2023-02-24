@@ -9,10 +9,11 @@ class ThemeDialogBox extends StatefulWidget {
   State<ThemeDialogBox> createState() => _ThemeDialogBoxState();
 }
 
+ThemeData currentTheme = allthemes[0].themeType;
+
 class _ThemeDialogBoxState extends State<ThemeDialogBox> {
   @override
   Widget build(BuildContext context) {
-    ValueNotifier currTheme = MyApp.currentTheme;
     return GestureDetector(
         onTap: () {
           showDialog(
@@ -23,12 +24,12 @@ class _ThemeDialogBoxState extends State<ThemeDialogBox> {
                   children: <Widget>[
                     SimpleDialogOption(
                         onPressed: () {
-                          Navigator.of(context).pop(allthemes[0]);
+                          Navigator.of(context).pop(allthemes[0].themeType);
                         },
                         child: Text(allthemes[0].themeName)),
                     SimpleDialogOption(
                       onPressed: () {
-                        Navigator.of(context).pop(allthemes[1]);
+                        Navigator.of(context).pop(allthemes[1].themeType);
                       },
                       child: Text(allthemes[1].themeName),
                     ),
@@ -41,35 +42,14 @@ class _ThemeDialogBoxState extends State<ThemeDialogBox> {
                 } else {
                   /// Providing the selectedTheme Value to MyApp Theme Section in main.dart
                   MyApp.currentTheme.value = value;
+                  
                 }
               }));
         },
-        child: ValueListenableBuilder(
-          valueListenable: currTheme,
-          builder: (context, value, _) {
-            var size = MediaQuery.of(context).size;
-            return Container(
-              height: 70,
-              child: Row(
-                children: [
-                  const SizedBox(
-                    width: 18,
-                  ),
-                  const Icon(
-                    Icons.change_circle,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "${value.themeName}",
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                ],
-              ),
-            );
-          },
-        ));
+        child: const Icon(Icons.table_bar));
   }
+}
+
+ThemeData themeChange() {
+  return currentTheme;
 }

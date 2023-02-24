@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavBaritem.dart';
 
+
 class Body extends StatelessWidget {
   const Body({
     Key? key,
@@ -59,10 +60,9 @@ class Body extends StatelessWidget {
                   hoverColor: _selectedColor.withOpacity(0.1),
                   child: Stack(children: <Widget>[
                     Padding(
-                      padding: itemPadding -
-                          (enablePaddingAnimation
-                              ? EdgeInsets.only(right: itemPadding.right * t)
-                              : EdgeInsets.zero),
+                      padding: itemPadding - (enablePaddingAnimation 
+                          ? EdgeInsets.only(right: itemPadding.right * t) 
+                          : EdgeInsets.zero),
                       child: Row(
                         children: [
                           IconTheme(
@@ -84,7 +84,7 @@ class Body extends StatelessWidget {
                           widthFactor: t,
                           child: Padding(
                             padding: EdgeInsets.only(
-                                left: itemPadding.right / 0.45,
+                                left: itemPadding.right / 0.63,
                                 right: itemPadding.right),
                             child: DefaultTextStyle(
                               style: TextStyle(
@@ -96,8 +96,9 @@ class Body extends StatelessWidget {
                               ),
                               child: CircleAvatar(
                                   radius: 2.5,
-                                  backgroundColor:
-                                      dotIndicatorColor ?? _selectedColor),
+                                  backgroundColor: dotIndicatorColor != null
+                                      ? dotIndicatorColor
+                                      : _selectedColor),
                             ),
                           ),
                         ),

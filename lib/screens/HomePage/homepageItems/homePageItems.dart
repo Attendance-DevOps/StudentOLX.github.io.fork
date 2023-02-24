@@ -4,7 +4,8 @@ import 'package:olx_student_app/themes/themeDialogBox.dart';
 class HomePageItems {
   static AppBar HomePageAppBar() {
     return AppBar(
-      title: const Text("Student OLX"),
+      centerTitle: true,
+      title: const Text("Home Page"),
       actions: const [
         Padding(
           padding: EdgeInsets.only(right: 20.0),

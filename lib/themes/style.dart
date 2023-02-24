@@ -1,48 +1,20 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/themes/Colors.dart';
 
-class ThemeStructure {
-  /// Creates a [ThemeStructure]
-  const ThemeStructure(
-      {this.categoryButtonStyle,
-      this.categoryContainerColor,
-      this.categoryIconColor,
-      this.categoryPageDecoration,
-      this.categoryTextStyle,
-      this.themeData});
+class AppThemes {
+  // static const themeIds = [1, 2];
 
-  /// Main Theme
-  final ThemeData? themeData;
+  static ThemeData darkTheme = ThemeData(
+    scaffoldBackgroundColor: DarkThemeColors.scaffoldBackGroundColor,
+    appBarTheme:
+        AppBarTheme(backgroundColor: DarkThemeColors.scaffoldBackGroundColor),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: DarkThemeColors.scaffoldBackGroundColor,
+        selectedItemColor: DarkThemeColors.selectedItemColor,
+        unselectedItemColor: DarkThemeColors.unselectedItemColor),
+  );
 
-  /// Category Page Styling
-  final Color? categoryContainerColor;
-  final Color? categoryIconColor;
-  final TextStyle? categoryTextStyle;
-  final Decoration? categoryPageDecoration;
-  final ButtonStyle? categoryButtonStyle;
-
-  /// Profile Page Styling
-  
-
-  ThemeStructure copywith({
-    ThemeData? themeData,
-    Color? categoryContainerColor,
-    Color? categoryIconColor,
-    TextStyle? categoryTextStyle,
-    Decoration? categoryPageDecoration,
-    ButtonStyle? categoryButtonStyle,
-  }) {
-    return ThemeStructure(
-        themeData: themeData ?? this.themeData,
-        categoryButtonStyle: categoryButtonStyle ?? this.categoryButtonStyle,
-        categoryContainerColor:
-            categoryContainerColor ?? this.categoryContainerColor,
-        categoryIconColor: categoryIconColor ?? this.categoryIconColor,
-        categoryPageDecoration:
-            categoryPageDecoration ?? this.categoryPageDecoration,
-        categoryTextStyle: categoryTextStyle ?? this.categoryTextStyle);
-  }
+  static ThemeData lightTheme = ThemeData(
+      // scaffoldBackgroundColor: LightThemeColors.scaffoldBackGroundColor,
+      );
 }
-
-
