@@ -1,43 +1,41 @@
 import 'package:flutter/material.dart';
-import 'bottomNavBaritem.dart';
-import 'body.dart';
-import 'package:provider/provider.dart';
+import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/body.dart';
+import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavBaritem.dart';
 
 class DotNavigationBar extends StatelessWidget {
-  DotNavigationBar(
-      {Key? key,
-      required this.items,
-      this.currentIndex = 0,
-      this.onTap,
-      this.selectedItemColor,
-      this.size,
-      this.unselectedItemColor,
-      this.margin = const EdgeInsets.all(8),
-      this.itemPadding =
-          const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      this.duration = const Duration(milliseconds: 500),
-      this.curve = Curves.easeOutQuint,
-      this.dotIndicatorColor,
-      this.marginR = const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-      this.paddingR = const EdgeInsets.only(bottom: 5, top: 10),
-      this.borderRadius = 30,
-      this.backgroundColor = Colors.white,
-      this.boxShadow = const [
-        BoxShadow(
-          color: Colors.transparent,
-          spreadRadius: 0,
-          blurRadius: 0,
-          offset: Offset(0, 0), // changes position of shadow
-        ),
-      ],
-      this.enableFloatingNavBar = true,
-      this.enablePaddingAnimation = true})
-      : super(key: key);
+  const DotNavigationBar({
+    Key? key,
+    required this.items,
+    this.currentIndex = 0,
+    this.onTap,
+    // this.selectedItemColor,
+    // this.unselectedItemColor,
+    this.margin = const EdgeInsets.all(8),
+    this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+    this.duration = const Duration(milliseconds: 500),
+    this.curve = Curves.easeOutQuint,
+    this.dotIndicatorColor,
+    this.marginR = const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+    this.paddingR = const EdgeInsets.only(bottom: 5, top: 10),
+    this.borderRadius = 30,
+    // this.backgroundColor,
+    this.bottomNavigationBarThemedata = const BottomNavigationBarThemeData(),
+    this.boxShadow = const [
+      BoxShadow(
+        color: Colors.transparent,
+        spreadRadius: 0,
+        blurRadius: 0,
+        offset: Offset(0, 0), // changes position of shadow
+      ),
+    ],
+    this.enableFloatingNavBar = true,
+    this.enablePaddingAnimation = true,
+  }) : super(key: key);
 
   /// A list of tabs to display, ie `Home`, `Profile`,`Cart`, etc
   final List<DotNavigationBarItem> items;
 
-  final Size? size;
+  final BottomNavigationBarThemeData bottomNavigationBarThemedata;
 
   /// The tab to display.
   final int currentIndex;
@@ -46,10 +44,10 @@ class DotNavigationBar extends StatelessWidget {
   final Function(int)? onTap;
 
   /// The color of the icon and text when the item is selected.
-  final Color? selectedItemColor;
+  // final Color? selectedItemColor;
 
   /// The color of the icon and text when the item is not selected.
-  final Color? unselectedItemColor;
+  // final Color? unselectedItemColor;
 
   /// A convenience field for the margin surrounding the entire widget.
   final EdgeInsets margin;
@@ -76,7 +74,7 @@ class DotNavigationBar extends StatelessWidget {
   final double? borderRadius;
 
   ///bgd colors for the nav bar
-  final Color? backgroundColor;
+  // final Color? backgroundColor;
 
   /// List of box shadow
   final List<BoxShadow> boxShadow;
@@ -100,7 +98,7 @@ class DotNavigationBar extends StatelessWidget {
                     padding: paddingR,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(borderRadius!),
-                      color: backgroundColor,
+                      color: bottomNavigationBarThemedata.backgroundColor,
                       boxShadow: boxShadow,
                     ),
                     width: double.infinity,
@@ -111,9 +109,9 @@ class DotNavigationBar extends StatelessWidget {
                           currentIndex: currentIndex,
                           curve: curve,
                           duration: duration,
-                          selectedItemColor: selectedItemColor,
+                          selectedItemColor: bottomNavigationBarThemedata.selectedItemColor,
                           theme: theme,
-                          unselectedItemColor: unselectedItemColor,
+                          unselectedItemColor: bottomNavigationBarThemedata.unselectedItemColor,
                           onTap: onTap!,
                           itemPadding: itemPadding,
                           dotIndicatorColor: dotIndicatorColor,
@@ -125,8 +123,8 @@ class DotNavigationBar extends StatelessWidget {
             ),
           )
         : Container(
-            padding: EdgeInsets.symmetric(vertical: 12),
-            color: backgroundColor,
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            color: bottomNavigationBarThemedata.backgroundColor,
             child: Padding(
               padding: margin,
               child: Body(
@@ -134,9 +132,9 @@ class DotNavigationBar extends StatelessWidget {
                   currentIndex: currentIndex,
                   curve: curve,
                   duration: duration,
-                  selectedItemColor: selectedItemColor,
+                  selectedItemColor: bottomNavigationBarThemedata.selectedItemColor,
                   theme: theme,
-                  unselectedItemColor: unselectedItemColor,
+                  unselectedItemColor: bottomNavigationBarThemedata.unselectedItemColor,
                   onTap: onTap!,
                   itemPadding: itemPadding,
                   dotIndicatorColor: dotIndicatorColor,
