@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   var pages = [
     const Trending(),
     const Categories(),
-    const Sell(),
+     SELL(),
     const Recent(),
     const Profile()
   ];
