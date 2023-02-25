@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/main.dart';
-import 'package:olx_student_app/screens/bottomNavBarPages/Profile/profilePageItems.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Profile/profileNavigation/appSettings/appSettingsItems.dart';
 import 'package:olx_student_app/screens/loadingScreen/loadingScreen.dart';
 
-/// Profile Page with
-/// profile Section, Orders, Purchases, Help and Support, Select Language, Wish List (When product is available ,user will be notified)
-
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class AppSettings extends StatelessWidget {
+  const AppSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class Profile extends StatelessWidget {
           var size = MediaQuery.of(context).size;
 
           return FutureBuilder(
-              future: profilePage(size, value, context),
+              future: appSettings(size, value, context),
               builder: (context, snapshot) {
                 /// Future with no errors
                 if (snapshot.connectionState == ConnectionState.done &&
@@ -42,9 +39,9 @@ class Profile extends StatelessWidget {
   }
 }
 
-Future<Widget> profilePage(size, value, context) async {
+Future<Widget> appSettings(size, value, context) async {
   return Scaffold(
-    // appBar: ProfilePageItems.profileAppBar(),
-    body: ProfilePageItems.profilePage(size, value, context),
+    appBar: AppSettingsItems.AppSettingsAppBar(),
+    body: AppSettingsItems.appSettingsPage(size, value, context),
   );
 }
