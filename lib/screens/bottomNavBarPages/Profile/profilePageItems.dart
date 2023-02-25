@@ -9,7 +9,7 @@ class ProfilePageItems {
   // }
 
   /// Profile Page
-  static Widget profilePage(size, value,context) {
+  static Widget profilePage(size, value, context) {
     return CustomScrollView(slivers: <Widget>[
       SliverAppBar(
         snap: false,
@@ -89,53 +89,55 @@ class ProfilePageItems {
   /// Profile Section with Profile Photo or Avatar which leads to new Profile Page where edit options will be provided to user
 
   static Widget profileSection(size) {
-    return ElevatedButton(
-        onPressed: () {},
-        style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-        child: Row(
-          children: [
-            const CircleAvatar(
-              radius: 33,
-              child: Text(
-                "H",
-                style: TextStyle(fontSize: 30),
+    return SingleChildScrollView(
+      child: ElevatedButton(
+          onPressed: () {},
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+          child: Row(
+            children: [
+              const CircleAvatar(
+                radius: 33,
+                child: Text(
+                  "H",
+                  style: TextStyle(fontSize: 30),
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            Container(
-              width: size.width * 0.6,
-              height: size.height * 0.08,
-              // color: const Color.fromARGB(255, 68, 64, 26),
-              child: Column(
-                children: const [
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Honey Bansal",
-                      style: TextStyle(fontSize: 24),
+              const SizedBox(
+                width: 15,
+              ),
+              Container(
+                width: size.width * 0.6,
+                height: size.height * 0.08,
+                // color: const Color.fromARGB(255, 68, 64, 26),
+                child: Column(
+                  children: const [
+                    SizedBox(
+                      height: 3,
                     ),
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Align(
+                    Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("View your profile"))
-                ],
+                      child: Text(
+                        "Honey Bansal",
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("View your profile"))
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 4,
-            ),
-            const Icon(Icons.arrow_right)
-          ],
-        ));
+              const SizedBox(
+                width: 4,
+              ),
+              const Icon(Icons.arrow_right)
+            ],
+          )),
+    );
   }
 
   static Widget profileTabs(label, size, bottomLabel, icon, value, labelFont,
