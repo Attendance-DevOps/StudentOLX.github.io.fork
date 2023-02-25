@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "olx_server",
+            "name": "olx_student_app",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "olx_server (profile mode)",
+            "name": "olx_student_app (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "olx_server (release mode)",
+            "name": "olx_student_app (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
