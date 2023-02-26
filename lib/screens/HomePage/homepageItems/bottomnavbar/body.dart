@@ -17,7 +17,7 @@ class Body extends StatelessWidget {
     required this.enablePaddingAnimation,
   }) : super(key: key);
 
-  final List<DotNavigationBarItem> items;
+  final List items;
   final int currentIndex;
   final Curve curve;
   final Duration duration;

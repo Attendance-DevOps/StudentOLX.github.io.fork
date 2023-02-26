@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavBar.dart';
 import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavBaritem.dart';
 import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavigationBarProvider.dart';
-import 'package:olx_student_app/screens/homepage/homepageItems/homePageItems.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
