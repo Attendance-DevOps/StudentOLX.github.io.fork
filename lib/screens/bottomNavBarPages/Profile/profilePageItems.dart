@@ -1,143 +1,128 @@
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/screens/bottomNavBarPages/Profile/profileNavigation/appSettings/appSettings.dart';
 
+/// Profile Page Items which has profile app Bar, Profile Navigation Button and other setting buttons
+
 class ProfilePageItems {
-  // static AppBar profileAppBar() {
-  //   return AppBar(
-  //     title: const Text("Profile"),
-  //   );
-  // }
+  static AppBar profileAppBar(size, value, context) {
+    return AppBar(
+        flexibleSpace: Container(
+      height: 90,
+      width: size.width,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+            Color.fromARGB(255, 59, 59, 59),
+            Color.fromARGB(255, 0, 0, 0)
+          ])),
+      child: const Padding(
+        padding: EdgeInsets.only(top: 40, left: 20),
+        child: Text(
+          'Profile',
+          style: TextStyle(
+              color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
+        ),
+      ),
+    ));
+  }
 
   /// Profile Page
   static Widget profilePage(size, value, context) {
-    return CustomScrollView(slivers: <Widget>[
-      SliverAppBar(
-        snap: false,
-        pinned: true,
-        floating: false,
-        elevation: 0,
-        shape: const Border(bottom: BorderSide(width: 0)),
-        toolbarHeight: 60,
-        backgroundColor: const Color.fromARGB(255, 236, 15, 15),
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.only(top: 0),
-          child: Container(
-            height: 90,
-            width: size.width,
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  Color.fromARGB(255, 59, 59, 59),
-                  Color.fromARGB(255, 0, 0, 0)
-                ])),
-            child: const Padding(
-              padding: EdgeInsets.only(top: 40, left: 20),
-              child: Text(
-                'Profile',
-                style: TextStyle(
-                    color: Color.fromARGB(255, 206, 206, 206), fontSize: 25),
-              ),
-            ),
-          ),
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SafeArea(
+          child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: size.width,
+          maxWidth: size.width,
         ),
-      ),
-      SliverFillRemaining(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: SafeArea(
-              child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: size.width,
-              maxWidth: size.width,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 10,
             ),
-            child: Column(
-              children: [
-                profileSection(size),
-                const SizedBox(
-                  height: 8,
-                ),
-                profileTabs("My Orders", size, null, Icons.card_membership,
-                    value, 16.0, 11.0, () {}),
-                profileTabs("My Purchases", size, "Billing And Invoices",
-                    Icons.shopping_bag, value, 16.0, 11.0, () {}),
-                profileTabs("Help and Support", size, "Resolve your Queries",
-                    Icons.question_answer, value, 16.0, 11.0, () {}),
-                profileTabs("Wish List", size, "Tell your wish product",
-                    Icons.insert_emoticon, value, 16.0, 11.0, () {}),
-                profileTabs("Language", size, "Choose your language",
-                    Icons.language, value, 16.0, 11.0, () {}),
-                profileTabs("Account Settings", size, null, Icons.settings,
-                    value, 16.0, 11.0, () {}),
-                profileTabs("App Settings", size, null,
-                    Icons.settings_applications, value, 16.0, 11.0, () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return AppSettings();
-                  }));
-                }),
-                profileTabs("Log Out", size, null, Icons.logout, value, 16.0,
-                    11.0, () {}),
-              ],
+            profileSection(size),
+            const SizedBox(
+              height: 8,
             ),
-          )),
+            profileTabs("My Orders", size, null, Icons.card_membership, value,
+                16.0, 11.0, () {}),
+            profileTabs("My Purchases", size, "Billing And Invoices",
+                Icons.shopping_bag, value, 16.0, 11.0, () {}),
+            profileTabs("Help and Support", size, "Resolve your Queries",
+                Icons.question_answer, value, 16.0, 11.0, () {}),
+            profileTabs("Wish List", size, "Tell your wish product",
+                Icons.insert_emoticon, value, 16.0, 11.0, () {}),
+            profileTabs("Language", size, "Choose your language",
+                Icons.language, value, 16.0, 11.0, () {}),
+            profileTabs("Account Settings", size, null, Icons.settings, value,
+                16.0, 11.0, () {}),
+            profileTabs("App Settings", size, null, Icons.settings_applications,
+                value, 16.0, 11.0, () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const AppSettings();
+              }));
+            }),
+            profileTabs(
+                "Log Out", size, null, Icons.logout, value, 16.0, 11.0, () {}),
+          ],
         ),
-      )
-    ]);
+      )),
+    );
   }
 
   /// Profile Section with Profile Photo or Avatar which leads to new Profile Page where edit options will be provided to user
 
   static Widget profileSection(size) {
-    return SingleChildScrollView(
-      child: ElevatedButton(
-          onPressed: () {},
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.transparent)),
-          child: Row(
-            children: [
-              const CircleAvatar(
-                radius: 33,
-                child: Text(
-                  "H",
-                  style: TextStyle(fontSize: 30),
-                ),
+    return ElevatedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.transparent)),
+        child: Row(
+          children: [
+            const CircleAvatar(
+              radius: 33,
+              child: Text(
+                "H",
+                style: TextStyle(fontSize: 30),
               ),
-              const SizedBox(
-                width: 15,
-              ),
-              Container(
-                width: size.width * 0.6,
-                height: size.height * 0.08,
-                // color: const Color.fromARGB(255, 68, 64, 26),
-                child: Column(
-                  children: const [
-                    SizedBox(
-                      height: 3,
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Container(
+              width: size.width * 0.6,
+              height: size.height * 0.08,
+              // color: const Color.fromARGB(255, 68, 64, 26),
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Honey Bansal",
+                      style: TextStyle(fontSize: 24),
                     ),
-                    Align(
+                  ),
+                  SizedBox(
+                    height: 3,
+                  ),
+                  Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Honey Bansal",
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3,
-                    ),
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("View your profile"))
-                  ],
-                ),
+                      child: Text("View your profile"))
+                ],
               ),
-              const SizedBox(
-                width: 4,
-              ),
-              const Icon(Icons.arrow_right)
-            ],
-          )),
-    );
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            const Icon(Icons.arrow_right)
+          ],
+        ));
   }
 
   static Widget profileTabs(label, size, bottomLabel, icon, value, labelFont,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dimension.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   final Widget mobileBody;
@@ -10,10 +11,17 @@ class ResponsiveLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth < 600) {
+      if (constraints.maxWidth < tabScreenSize) {
         return mobileBody;
-      } else {
+      } else if (constraints.maxWidth < webScreenSize) {
         return tabBody;
+      } else {
+        return Center(
+          child: Container(
+            child: const Text(
+                "Desktop view is on holiday. Wait for it or shrink window size below 900px"),
+          ),
+        );
       }
     });
   }

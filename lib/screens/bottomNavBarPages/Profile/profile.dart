@@ -44,7 +44,7 @@ class Profile extends StatelessWidget {
 
 Future<Widget> profilePage(size, value, context) async {
   return Scaffold(
-    // appBar: ProfilePageItems.profileAppBar(),
+    appBar: ProfilePageItems.profileAppBar(size,value,context),
     body: ProfilePageItems.profilePage(size, value, context),
   );
 }

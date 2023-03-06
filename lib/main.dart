@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:olx_student_app/responsive_layout/mobileBody.dart';
+import 'package:olx_student_app/responsive_layout/responsive_layout.dart';
+import 'package:olx_student_app/responsive_layout/tabBody.dart';
 import 'package:olx_student_app/screens/homepage/homepageItems/bottomnavbar/bottomNavigationBarProvider.dart';
-import 'package:olx_student_app/screens/splashScreen/splashScreen.dart';
 import 'package:olx_student_app/themes/allThemes.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +14,7 @@ void main() async {
       ChangeNotifierProvider<BottomNavigationBarProvider>(
           create: (_) => BottomNavigationBarProvider())
     ],
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
 
             /// Spash screen According to the Theme
-            home: const SplashScreen(),
+            home: const ResponsiveLayout(
+                mobileBody: MobileBodyLayout(), tabBody: TabBodyLayout()),
 
             /// Providing the theme value from Valuenotifier to main theme
             theme: value.themeStructure.themeData, // accepts themedata

@@ -15,7 +15,7 @@ class Categories extends StatelessWidget {
         valueListenable: currTheme,
         builder: (context, value, _) {
           return FutureBuilder(
-              future: categoryPage(value, size,context),
+              future: categoryPage(value, size, context),
               builder: (context, snapshot) {
                 /// Future done with no errors
                 if (snapshot.connectionState == ConnectionState.done &&
@@ -39,11 +39,9 @@ class Categories extends StatelessWidget {
   }
 }
 
-Future<Widget> categoryPage(value, size,context) async {
-  
+Future<Widget> categoryPage(value, size, context) async {
   return Scaffold(
+    appBar: CategoriesItems.categoryAppBar(size, value, context),
     body: CategoriesItems.categoryPage(size, value, context),
   );
 }
-
-

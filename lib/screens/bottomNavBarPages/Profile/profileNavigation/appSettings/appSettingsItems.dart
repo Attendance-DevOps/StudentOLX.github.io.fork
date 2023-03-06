@@ -18,9 +18,8 @@ class AppSettingsItems {
             maxWidth: size.width,
           ),
           child: Column(
-            children: [
+            children: const [
               ThemeDialogBox()
-              // ElevatedButton(onPressed: () {}, child: ThemeDialogBox())
             ],
           ),
         ),
