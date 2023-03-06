@@ -139,7 +139,14 @@ class _LocationFilterState extends State<LocationFilter> {
                         const SizedBox(
                           height: 5,
                         ),
-                        SliderScreen()
+                        SliderScreen(),
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Apply"),
+                          ),
+                        )
                       ],
                     ),
                   );
@@ -151,7 +158,7 @@ class _LocationFilterState extends State<LocationFilter> {
       },
       child: const Icon(
         Icons.filter_alt_outlined,
-        color: Colors.white,
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
     );
   }
