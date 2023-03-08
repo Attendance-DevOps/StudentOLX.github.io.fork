@@ -84,7 +84,7 @@ class _LocationFilterState extends State<LocationFilter> {
                             );
                           }),
                         ),
-                        Text(radioBtns[selectedRadio]),
+                        Text("Select ${radioBtns[selectedRadio]}"),
                         const SizedBox(
                           height: 5,
                         ),
