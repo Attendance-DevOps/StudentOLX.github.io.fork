@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/filter/filterConstants.dart';
 import 'package:olx_student_app/screens/bottomNavBarPages/Home/searchBar/searchBarPage.dart';
 
 import 'filter/locationFilter.dart';
+
 /// Home Items contains homePage appbar, body
 class HomeItems {
   /// homePage AppBar
@@ -54,12 +56,13 @@ class HomeItems {
 
   /// Body of homePage
   static Widget homePage(size, value, context) {
+    var size = MediaQuery.of(context).size;
     return SafeArea(
         child: SingleChildScrollView(
       child: Column(
         children: [
           // user college/school with filter button so that user can choose different places for selling or buying
-          userLocation(),
+          userLocation(size),
           // sliding view list of products
           // Trending - grid view of products ( max 4 or 6)
           // Your inspiration - grid  view of products
@@ -69,16 +72,20 @@ class HomeItems {
     ));
   }
 
-  static Widget userLocation() {
+  static ValueNotifier currentPlace = ValueNotifier(all[0]);
+  static Widget userLocation(size) {
     return Container(
       height: 45,
       color: const Color.fromARGB(255, 88, 87, 82),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "Location of Receiving",
-            style: TextStyle(color: Colors.white),
+          Container(
+            width: size.width * 0.19,
+            child: const Text(
+              "Receive At ",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           const SizedBox(
             width: 6,
@@ -87,18 +94,29 @@ class HomeItems {
           const SizedBox(
             width: 10,
           ),
-          const Text("Vivekanda Institute",
-              style: TextStyle(color: Colors.white)),
-          const SizedBox(
-            width: 10,
+          ValueListenableBuilder(
+            valueListenable: currentPlace,
+            builder: ((context, value, _) {
+              return Container(
+                  width: size.width * 0.6,
+                  height: 20,
+                  child: Text(
+                    value,
+                    style: const TextStyle(color: Colors.white),
+                    overflow: TextOverflow.clip,
+                  ));
+            }),
           ),
-          userLocationFilter()
+          const SizedBox(
+            width: 2,
+          ),
+          userLocationFilter(currentPlace),
         ],
       ),
     );
   }
 
-  static Widget userLocationFilter() {
-    return LocationFilter();
+  static Widget userLocationFilter(currentPlace) {
+    return const LocationFilter();
   }
 }

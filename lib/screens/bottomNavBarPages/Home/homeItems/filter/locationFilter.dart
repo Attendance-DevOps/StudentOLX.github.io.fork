@@ -1,5 +1,6 @@
 /// User location filter page
 import 'package:flutter/material.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/homeItems.dart';
 import 'filterConstants.dart';
 import 'slider.dart';
 
@@ -13,7 +14,6 @@ class LocationFilter extends StatefulWidget {
 class _LocationFilterState extends State<LocationFilter> {
   /// Initialization of dropdown value
   _LocationFilterState() {
-    stateValue = stateDropDownList[0];
     selectedRadio = 0;
     categoryValue = categories[0];
   }
@@ -51,36 +51,16 @@ class _LocationFilterState extends State<LocationFilter> {
             /// Showing AlertDialog Box which works as a Stateful widget itself
             return AlertDialog(
               content: StatefulBuilder(
-                builder: (BuildContext context, StateSetter setState) {
+                builder: (context, StateSetter setState) {
                   /// Column contains all the filter widgets
                   return SingleChildScrollView(
                     child: Column(
                       children: [
                         const Text("Choose Filters"),
-
-                        /// States filter
-                        const Text("States"),
                         const SizedBox(
                           height: 10,
                         ),
-
-                        /// Contains all the States in a dropdown list
-                        DropdownButton<String>(
-                            value: stateValue,
-                            enableFeedback: true,
-                            isExpanded: true,
-                            hint: const Text("Select State"),
-                            items: stateDropDownList
-                                .map((String e) => DropdownMenuItem(
-                                      value: e,
-                                      child: Text(e),
-                                    ))
-                                .toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                stateValue = newValue!;
-                              });
-                            }),
+                        const Text("Choose Place to buy from"),
 
                         /// Contains Radiobuttons having all, College,School, other as options
                         Column(
@@ -95,7 +75,6 @@ class _LocationFilterState extends State<LocationFilter> {
                                   /// updating radio button index
                                   selectedRadio = val!;
                                 });
-                                print(index);
 
                                 /// updating places value in dropdown button
                                 // currRadioValue = radioValue[selectedRadio][0];
@@ -113,14 +92,21 @@ class _LocationFilterState extends State<LocationFilter> {
                         /// Dropdownbutton contains all,college,school and  other name according to the selected radio button
                         Visibility(
                             child: (selectedRadio == 0)
-                                ? dropDown(allValue, all)
+                                ? (dropDown(allValue, all))
                                 : (selectedRadio == 1)
-                                    ? dropDown(collegeValue, college)
+                                    ? dropDown(
+                                        collegeValue,
+                                        college,
+                                      )
                                     : (selectedRadio == 2)
-                                        ? dropDown(schoolValue, school)
-                                        : (selectedRadio == 3)
-                                            ? dropDown(otherValue, other)
-                                            : dropDown(allValue, all)),
+                                        ? dropDown(
+                                            schoolValue,
+                                            school,
+                                          )
+                                        : dropDown(
+                                            otherValue,
+                                            other,
+                                          )),
 
                         const SizedBox(
                           height: 10,
@@ -131,20 +117,36 @@ class _LocationFilterState extends State<LocationFilter> {
                         const SizedBox(
                           height: 5,
                         ),
-
-                        dropDown(categoryValue, categories),
-
-                        /// Price filter
+                        DropdownButton<String>(
+                            value: categoryValue,
+                            isExpanded: true,
+                            hint: const Text("Select State"),
+                            items: categories
+                                .map((String e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e),
+                                    ))
+                                .toList(),
+                            onChanged: (newValue) {
+                              setState(() {
+                                categoryValue = newValue!;
+                              });
+                            }),
                         const Text("Price"),
                         const SizedBox(
                           height: 5,
                         ),
-                        SliderScreen(),
+                        const SliderScreen(),
                         Align(
                           alignment: Alignment.bottomRight,
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Apply"),
+                            onPressed: () {
+                              setState(() {
+                                HomeItems.currentPlace.value = currentLocation;
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Apply"),
                           ),
                         )
                       ],
@@ -168,9 +170,10 @@ class _LocationFilterState extends State<LocationFilter> {
   Widget dropDown(String curr_value, List<String> list) {
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
+        /// Submitting the current Place location to a variable currentLocation to reflect it in homePage filter bar
+        currentLocation = curr_value;
         return DropdownButton<String>(
             value: curr_value,
-            enableFeedback: true,
             isExpanded: true,
             hint: const Text("Select State"),
             items: list
@@ -181,7 +184,8 @@ class _LocationFilterState extends State<LocationFilter> {
                 .toList(),
             onChanged: (newValue) {
               setState(() {
-                curr_value = newValue!;
+                currentLocation = newValue!;
+                curr_value = newValue;
               });
             });
       },

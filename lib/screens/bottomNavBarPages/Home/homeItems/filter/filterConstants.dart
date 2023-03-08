@@ -1,27 +1,16 @@
-var stateDropDownList = <String>[
-  "Punjab",
-  "Gujrat",
-  "Kerela",
-  "Manipur",
-  "Mumbai",
-  "Jammu & Kashmir",
-  "Tamil Nadu",
-  "Madhya Pradesh"
-];
 int selectedRadio = 0;
-
-String stateValue = "";
 String allValue = "";
 String collegeValue = "";
 String schoolValue = "";
 String otherValue = "";
 String categoryValue = "";
-
+String currentLocation = all[0];
+var radioValues = [all, college, school, other];
 var radioBtns = ["All", "College", "School", "Other"];
-var all = <String>["dsf", "dfdf", "ddfdf"];
-var college = <String>["abc", "bcd", "cde"];
-var school = <String>["sdf", "sfda", "asfa"];
-var other = <String>["afda", "fdad", "dfgf"];
+var all = <String>["All", "dsf", "dfdf", "ddfdf"];
+var college = <String>["User college", "All", "abc", "bcd", "cde"];
+var school = <String>["User School", "All", "sdf", "sfda", "asfa"];
+var other = <String>["All", "afda", "fdad", "dfgf"];
 
 var categories = [
   "All",

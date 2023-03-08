@@ -1,8 +1,11 @@
+/// basic layout of Theme
+
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/themes/allSplashScreens.dart';
 import 'package:olx_student_app/themes/allthemes/darkTheme.dart';
 import 'package:olx_student_app/themes/allthemes/lightTheme.dart';
 import 'package:olx_student_app/themes/style.dart';
+
 class AllThemes {
   ThemeStructure themeStructure;
   Scaffold splashScreen;

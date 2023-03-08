@@ -10,7 +10,7 @@ class SliderScreen extends StatefulWidget {
 class _SliderScreenState extends State<SliderScreen> {
   RangeValues values = RangeValues(10, 100000);
   RangeLabels labels = RangeLabels('10', "100000");
-  int divisions = 5;
+  int divisions = 10;
   List strLabels = [];
 
   @override
@@ -44,7 +44,6 @@ class _SliderScreenState extends State<SliderScreen> {
                   values: values,
                   labels: labels,
                   onChanged: (value) {
-
                     setState(() {
                       values = value;
                       labels = RangeLabels(
