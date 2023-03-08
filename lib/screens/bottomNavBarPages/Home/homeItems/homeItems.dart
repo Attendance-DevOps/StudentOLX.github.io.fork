@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/filter/filterConstants.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/filter/userLocation.dart';
 import 'package:olx_student_app/screens/bottomNavBarPages/Home/searchBar/searchBarPage.dart';
 
 import 'filter/locationFilter.dart';
@@ -56,67 +57,16 @@ class HomeItems {
 
   /// Body of homePage
   static Widget homePage(size, value, context) {
-    var size = MediaQuery.of(context).size;
     return SafeArea(
-        child: SingleChildScrollView(
-      child: Column(
-        children: [
-          // user college/school with filter button so that user can choose different places for selling or buying
-          userLocation(size),
-          // sliding view list of products
-          // Trending - grid view of products ( max 4 or 6)
-          // Your inspiration - grid  view of products
-          // Recently added products - grid view of products
-        ],
-      ),
+        child: ListView(
+      children: const [
+        // user college/school with filter button so that user can choose different places for selling or buying
+        UserLocation(),
+        // sliding view list of products
+        // Trending - grid view of products ( max 4 or 6)
+        // Your inspiration - grid  view of products
+        // Recently added products - grid view of products
+      ],
     ));
-  }
-
-  static ValueNotifier currentPlace = ValueNotifier(all[0]);
-  static Widget userLocation(size) {
-    return Container(
-      height: 45,
-      color: const Color.fromARGB(255, 88, 87, 82),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: size.width * 0.19,
-            child: const Text(
-              "Receive At ",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          const SizedBox(
-            width: 6,
-          ),
-          const Text(" - ", style: TextStyle(color: Colors.white)),
-          const SizedBox(
-            width: 10,
-          ),
-          ValueListenableBuilder(
-            valueListenable: currentPlace,
-            builder: ((context, value, _) {
-              return Container(
-                  width: size.width * 0.6,
-                  height: 20,
-                  child: Text(
-                    value,
-                    style: const TextStyle(color: Colors.white),
-                    overflow: TextOverflow.clip,
-                  ));
-            }),
-          ),
-          const SizedBox(
-            width: 2,
-          ),
-          userLocationFilter(currentPlace),
-        ],
-      ),
-    );
-  }
-
-  static Widget userLocationFilter(currentPlace) {
-    return const LocationFilter();
   }
 }

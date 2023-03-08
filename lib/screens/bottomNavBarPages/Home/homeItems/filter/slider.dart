@@ -8,8 +8,8 @@ class SliderScreen extends StatefulWidget {
 }
 
 class _SliderScreenState extends State<SliderScreen> {
-  RangeValues values = RangeValues(10, 100000);
-  RangeLabels labels = RangeLabels('10', "100000");
+  RangeValues values = const RangeValues(10, 100000);
+  RangeLabels labels = const RangeLabels('10', "100000");
   int divisions = 10;
   List strLabels = [];
 
@@ -27,18 +27,18 @@ class _SliderScreenState extends State<SliderScreen> {
     return ListView(
       shrinkWrap: true,
       children: [
-        Container(
+        SizedBox(
           width: 100,
           child: Column(
             children: [
               SliderTheme(
-                data: SliderThemeData(
+                data: const SliderThemeData(
                   trackHeight: 10,
                 ),
                 child: RangeSlider(
                   divisions: divisions,
-                  activeColor: Color.fromARGB(255, 6, 149, 192),
-                  inactiveColor: Color.fromARGB(255, 8, 4, 235),
+                  activeColor: const Color.fromARGB(255, 6, 149, 192),
+                  inactiveColor: const Color.fromARGB(255, 8, 4, 235),
                   min: 10,
                   max: 100000,
                   values: values,

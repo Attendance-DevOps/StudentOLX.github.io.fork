@@ -1,6 +1,6 @@
 /// User location filter page
 import 'package:flutter/material.dart';
-import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/homeItems.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/filter/userLocation.dart';
 import 'filterConstants.dart';
 import 'slider.dart';
 
@@ -37,7 +37,6 @@ class _LocationFilterState extends State<LocationFilter> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
 
     /// when clicking on filter icon, Gesture Detector will detect it and perform onTap function afterwards
     return GestureDetector(
@@ -142,7 +141,7 @@ class _LocationFilterState extends State<LocationFilter> {
                           child: ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                HomeItems.currentPlace.value = currentLocation;
+                                UserLocation.currentPlace.value = currentLocation;
                               });
                               Navigator.of(context).pop();
                             },
@@ -167,13 +166,13 @@ class _LocationFilterState extends State<LocationFilter> {
 
   /// Dropdown Widget
 
-  Widget dropDown(String curr_value, List<String> list) {
+  Widget dropDown(String currValue, List<String> list) {
     return StatefulBuilder(
       builder: (BuildContext context, StateSetter setState) {
         /// Submitting the current Place location to a variable currentLocation to reflect it in homePage filter bar
-        currentLocation = curr_value;
+        currentLocation = currValue;
         return DropdownButton<String>(
-            value: curr_value,
+            value: currValue,
             isExpanded: true,
             hint: const Text("Select State"),
             items: list
@@ -185,7 +184,7 @@ class _LocationFilterState extends State<LocationFilter> {
             onChanged: (newValue) {
               setState(() {
                 currentLocation = newValue!;
-                curr_value = newValue;
+                currValue = newValue;
               });
             });
       },
