@@ -37,7 +37,6 @@ class _LocationFilterState extends State<LocationFilter> {
 
   @override
   Widget build(BuildContext context) {
-
     /// when clicking on filter icon, Gesture Detector will detect it and perform onTap function afterwards
     return GestureDetector(
       onTap: () {
@@ -141,7 +140,8 @@ class _LocationFilterState extends State<LocationFilter> {
                           child: ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                UserLocation.currentPlace.value = currentLocation;
+                                UserLocation.currentPlace.value =
+                                    currentLocation;
                               });
                               Navigator.of(context).pop();
                             },
@@ -158,7 +158,7 @@ class _LocationFilterState extends State<LocationFilter> {
         );
       },
       child: const Icon(
-        Icons.filter_alt_outlined,
+        Icons.filter_list,
         color: Color.fromARGB(255, 255, 255, 255),
       ),
     );

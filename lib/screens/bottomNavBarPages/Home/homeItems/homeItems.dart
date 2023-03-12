@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/filter/filterConstants.dart';
 import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/filter/userLocation.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/gridViewCards/productGridView.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Home/homeItems/horizontalProductView/horizontalView.dart';
 import 'package:olx_student_app/screens/bottomNavBarPages/Home/searchBar/searchBarPage.dart';
-
-import 'filter/locationFilter.dart';
+import 'package:olx_student_app/color_utils.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Profile/profileNavigation/appSettings/appSettings.dart';
+import 'package:olx_student_app/screens/bottomNavBarPages/Profile/profilePageItems.dart';
 
 /// Home Items contains homePage appbar, body
 class HomeItems {
@@ -20,7 +22,7 @@ class HomeItems {
               width: size.width * 0.8,
               height: 45,
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 46, 46, 45),
+                  color: hexStringToColor("F6EFEF"),
                   border: Border.all(width: 0.5),
                   borderRadius: BorderRadius.circular(5)),
               child: TextButton(
@@ -34,8 +36,8 @@ class HomeItems {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Search",
-                      style:
-                          TextStyle(color: Color.fromARGB(255, 141, 135, 135)),
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
                     ),
                   )),
             ),
@@ -45,9 +47,9 @@ class HomeItems {
             IconButton(
                 splashRadius: 20,
                 onPressed: () {},
-                icon: const Icon(
+                icon: Icon(
                   Icons.notifications_active_outlined,
-                  color: Color.fromARGB(255, 218, 212, 212),
+                  color: hexStringToColor("F6EFEF"),
                 ))
           ],
         ),
@@ -57,16 +59,48 @@ class HomeItems {
 
   /// Body of homePage
   static Widget homePage(size, value, context) {
-    return SafeArea(
-        child: ListView(
-      children: const [
-        // user college/school with filter button so that user can choose different places for selling or buying
-        UserLocation(),
-        // sliding view list of products
-        // Trending - grid view of products ( max 4 or 6)
-        // Your inspiration - grid  view of products
-        // Recently added products - grid view of products
-      ],
-    ));
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SafeArea(
+          child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: size.width,
+          maxWidth: size.width,
+        ),
+        child: Column(
+          children: [
+            // user college/school with filter button so that user can choose different places for selling or buying
+            UserLocation(),
+            // sliding view list of products
+            CarouselView(),
+            // Trending - grid view of products ( max 4 or 6)
+            ProductGridView(
+              title: "Your Inspiration",
+            ),
+            ProductGridView(title: "Your Inspiration"),
+            // Your inspiration - grid  view of products
+            // Recently added products - grid view of products
+          ],
+        ),
+      )),
+    );
   }
 }
+// static Widget homePage(size, value, context) {
+//     return SingleChildScrollView(
+//       child: SafeArea(
+//           child: Column(
+//         children: const [
+//           // user college/school with filter button so that user can choose different places for selling or buying
+//           UserLocation(),
+//           // sliding view list of products
+//           CarouselView(),
+//           // Trending - grid view of products ( max 4 or 6)
+//           ProductGridView(),
+//           ProductGridView(),
+//           // Your inspiration - grid  view of products
+//           // Recently added products - grid view of products
+//         ],
+//       )),
+//     );
+//   }

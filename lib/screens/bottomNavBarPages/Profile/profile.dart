@@ -8,7 +8,6 @@ import 'package:olx_student_app/screens/loadingScreen/loadingScreen.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
-
   @override
   Widget build(BuildContext context) {
     ValueNotifier currTheme = MyApp.currentTheme;
